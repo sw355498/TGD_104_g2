@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁籤切換</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        .tag{
+            display: flex;
+            list-style: none;
+            background: #ccc;
+            justify-content: center;
+            margin: 0;
+            padding-top: 20px;
+        }
+        .tag li{            
+            margin: auto 5px 0;
+            border-radius: 10px 10px 0 0;
+        }
+        .tag label{
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .tag input{
+            display: none;
+        }
+
+        .tag li:nth-child(1){
+            background: #0a95ff;
+        }
+        .tag li:nth-child(2){
+            background: #f48225;
+        }
+        .tag li:nth-child(3){
+            background: #5eba7d;
+        }
+        body:has(#tag1:checked) .box{
+            background: #0a95ff;
+        }
+        body:has(#tag2:checked) .box{
+            background: #f48225;
+        }
+        body:has(#tag3:checked) .box{
+            background: #5eba7d;
+        }
+
+        .box{
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="tag">
+        <li>
+            <label for="tag1">第一頁</label>
+            <input type="radio" name="tag" id="tag1" checked>
+        </li>
+        <li>
+            <label for="tag2">第二頁</label>
+            <input type="radio" name="tag" id="tag2">
+        </li>
+        <li>
+            <label for="tag3">第三頁</label>
+            <input type="radio" name="tag" id="tag3">
+        </li>
+    </ul>
+
+    <div class="box"></div>
+</body>
+</html>
