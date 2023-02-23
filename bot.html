@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            text-align: center;
+            padding-top: 30px;
+        }
+        .chatBox{
+            width: 300px;
+            height: 400px;
+            background: powderblue;
+            overflow-y: auto;
+            margin: 0 auto;
+        }
+        .chatBox ul{
+            list-style: none;
+            padding: 0 30px;
+        }
+        .chatBox li{
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .chatBox li span{
+            display: inline-block;
+            padding: 15px 20px;
+            background: greenyellow;
+            border-radius: 10px;
+        }
+
+        .chatBox li:nth-child(2n + 1){
+            margin-left: auto;
+            text-align: right;
+        }
+        #inputBox{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h3>聊天機器人測試</h3>
+        <div class="chatBox" id="chatBox">
+            <ul id="chatItemList">
+            </ul>
+        </div>
+        <input type="text" id="inputBox">
+        <button id="inputBtn">發送</button>
+    </div>
+
+    <script>
+        // 定義問題回答
+        let questionDict = {
+        "你好": "你好，有什麼需要幫助的嗎？",
+        "今天天氣": "今天天氣為雨天，出門要記得帶傘。",
+        "感謝": "不客氣，有需要幫助可以隨時聯繫我。"
+        };
+
+
+        let inputBox = document.querySelector("#inputBox");
+        let chatBox = document.querySelector("#chatBox");
+        let inputBtn = document.querySelector("#inputBtn")
+
+        // 綁定enter鍵，當點擊enter執行
+        inputBox.addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                answer();
+            }
+        });
+        inputBtn.addEventListener('click', function(){
+            answer()
+        })
+
+    
+        function answer() {
+  
+            let question = inputBox.value; // 取得問題
+            if(question.trim()){
+                inputBox.value = ""; // 清空输入框
+                let answer = questionDict[question] || "不好意思，我不知道怎麼回答。"; // 根據問題查找答案，如果沒有則使用這段回答
+                let chatItemList = document.querySelector("#chatItemList");
+                chatItemList.insertAdjacentHTML('beforeend', `<li><span> ${question} </span></li>  <li><span> ${answer} </sapn></li>`);
+                chatBox.scrollTop = chatBox.scrollHeight; // 自動滾動到聊天記錄框底部
+            }
+        }
+
+
+    </script>
+</body>
+</html>
